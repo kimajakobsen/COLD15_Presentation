@@ -1,0 +1,204 @@
+%!TEX root =main.tex
+\documentclass[xcolor=table]{beamer}
+\usepackage{etex}
+\let\Tiny=\tiny
+
+\usepackage{pgfpages}
+\pgfpagesuselayout{resize to}[a4paper,border shrink=5mm,landscape]
+
+%\usepackage[pdfborder={0 0 0}, backref=none, draft]{hyperref}
+%\usepackage{natbib}
+\usepackage[numbers]{natbib}
+\usepackage{pdfpages}
+\usepackage{appendix}
+\usepackage{quoting}
+\usepackage{multicol}
+\usepackage{comment}
+\usepackage{color,colortbl}
+\usepackage{mfirstuc}
+\usepackage{listings}
+
+%\usepackage{morefloats}
+\usepackage{placeins}
+\usepackage{hyphenat}
+\usepackage{multirow}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{pgfplotstable}
+%\usepackage[labelfont=bf]{subcaption}
+\usepackage{hhline}
+%\captionsetup{labelfont=bf,textfont=bf}
+%\input{/home/kah/Documents/EXTBI/ltpch/sw10article/functions/wordlist}
+%\input{/home/kah/Documents/EXTBI/ltpch/sw10article/functions/diverse}
+%\input{/home/kah/Documents/EXTBI/ltpch/sw10article/functions/listings}
+%\input{/home/kah/Documents/EXTBI/ltpch/sw10article/functions/table-figure}
+%\bibliographystyle{plainnat}
+%\theoremstyle{definition}
+%\newtheorem{definition}{Definition}
+
+\hypersetup{pdfstartview={Fit}}
+%\pgfplotsset{compat=newest} 
+
+
+\usetikzlibrary{decorations.pathmorphing}
+
+%- - - - - - - - - - - - - - - - - - - - - - -  Strikethrough  - - - - - - - - - - - - - - - - - - - - - - - 
+\usepackage{ulem}
+\renewcommand<>{\sout}[1]{\invisible#2{#1}\only#2{\beameroriginal{\sout}{#1}}}
+
+%- - - - - - - - - - - - - - - - - - - - - - -  Rowcolor  - - - - - - - - - - - - - - - - - - - - - - - 
+\makeatletter
+\def\rowcolor{\noalign{\ifnum0=`}\fi\bmr@rowcolor}
+\newcommand<>{\bmr@rowcolor}{%
+    \alt#1%
+        {\global\let\CT@do@color\CT@@do@color\@ifnextchar[\CT@rowa\CT@rowb}% 
+        {\ifnum0=`{\fi}\@gooble@rowcolor}% 
+}
+
+\newcommand{\@gooble@rowcolor}[2][]{\@gooble@rowcolor@}
+\newcommand{\@gooble@rowcolor@}[1][]{\@gooble@rowcolor@@}
+\newcommand{\@gooble@rowcolor@@}[1][]{\ignorespaces}
+\makeatother
+
+%- - - - - - - - - - - - - - - - - - - - - - -  for bibtex and citations  - - - - - - - - - - - - - - - - - - - - - - - 
+\usepackage{natbib} 
+
+\renewcommand{\bibsection}{\subsubsection*{\bibname}} 
+
+
+%- - - - - - - - - - - - - - - - - - - - - - -  style configurations  - - - - - - - - - - - - - - - - - - - - - - - 
+\usepackage{beamerthemesplit}
+\usetheme{CambridgeUS}
+% \usetheme{Boadilla}
+
+% um die Institutszugehoerigkeit unten links auf den slides verschwinden zu lassen
+\setbeamertemplate{footline}%{infolines theme}
+{
+\leavevmode%
+\hbox{%
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+\usebeamerfont{author in head/foot}\insertshortauthor
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+\usebeamerfont{title in head/foot}\insertshorttitle
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+\end{beamercolorbox}}%
+\vskip0pt%
+}
+\usepackage{framed}
+\setbeamertemplate{headline}
+{
+\leavevmode%
+\hbox{%
+\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+\usebeamerfont{author in head/foot}\insertshortinstitute
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+\usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+\end{beamercolorbox}}%
+\vskip0pt%
+}
+
+
+% \usecolortheme{lily} %rot
+\usecolortheme{dolphin} %blau
+% \usecolortheme{beaver} %rot
+% \usecolortheme{dove} %nur etwas grau
+% \usecolortheme{seagull} %hauptsaechlich grau
+% \usecolortheme{seahorse} % hellblau
+
+
+\usefonttheme{professionalfonts}
+
+\useinnertheme{rounded}
+
+% overwrites the above header settings
+% \useoutertheme{infolines}
+%\useoutertheme{smoothtree}
+
+\setbeamercovered{transparent} % enabling half-transparent overlays
+\beamertemplatenavigationsymbolsempty % Navigationsleiste abschalten
+
+%\setbeamercovered{invisible} %make sure that covered text is invisible not transparent
+
+
+%- - - - - - - - - - - - - - - - - - - - - - -  blocks  - - - - - - - - - - - - - - - - - - - - - - - 
+\definecolor{style-dark-blue}{RGB}{71, 71, 186}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamercolor{block title}{fg=white,bg=style-dark-blue} % color defined somewhere above
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!25!bg}
+
+\definecolor{string_color}{rgb}{0.627,0.126,0.941}
+\definecolor{keyword_color}{rgb}{0,0,1}
+\lstset{ 
+	language=SQL,
+	numbers=none,
+	captionpos=b,  %bottom
+	keywordstyle=\color[rgb]{0,0,1},
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\color[rgb]{0.627,0.126,0.941},
+	framerule=0.5pt,
+	linewidth=1.00\textwidth,
+	tabsize=4,
+	numberbychapter=true,
+	basicstyle=\ttfamily\footnotesize,
+	breaklines=true,
+	emph=[1]{OPTIONAL},%%%%%%%%%%% Add new keywords here
+	%emph=[2]{Tag,Problem,Person,List,NotSupportedException,TestMethod,ProblemSearch,Assert,
+	%EntityCollection,Department,IEnumerable,TimeSpan,DateTime},%%Classes
+	emphstyle=[1]{\color[rgb]{0,0,1}},
+	emphstyle=[2]{\color[rgb]{0.1,0.5,0.5}},
+	float=false,
+	breakindent=20pt,
+  morecomment=[s][\color{string_color}]{"}{"}, 
+}
+
+
+\lstdefinestyle{sparql}
+{ 
+  language=SQL,
+  numbers=none,
+  captionpos=b,  %bottom
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  framerule=0.5pt,
+  linewidth=1.00\textwidth,
+  tabsize=4,
+  numberbychapter=true,
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  emph=[1]{OPTIONAL,FILTER,QUAD,STORAGE,GRAPH,CONSTRUCT,prefix},%%%%%%%%%%% Add new keywords here
+  %emph=[2]{Tag,Problem,Person,List,NotSupportedException,TestMethod,ProblemSearch,Assert,
+  %EntityCollection,Department,IEnumerable,TimeSpan,DateTime},%%Classes
+  emphstyle=[1]{\color[rgb]{0,0,1}},
+  emphstyle=[2]{\color[rgb]{0.1,0.5,0.5}},
+  float=false,
+  morecomment=[s][\color{keyword_color}]{<http://}{>}, 
+  breakindent=20pt
+}
+\lstdefinestyle{rdf}
+{ 
+  numbers=none,
+  captionpos=b,  %bottom
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  framerule=0.5pt,
+  %linewidth=1.00\textwidth,
+  tabsize=4,
+  numberbychapter=true,
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  emph=[1]{prefix},%%%%%%%%%%% Add new keywords here
+  %emph=[2]{Tag,Problem,Person,List,NotSupportedException,TestMethod,ProblemSearch,Assert,
+  %EntityCollection,Department,IEnumerable,TimeSpan,DateTime},%%Classes
+  emphstyle=[1]{\color[rgb]{0,0,1}},
+  emphstyle=[2]{\color[rgb]{0.1,0.5,0.5}},
+  float=false,
+  morecomment=[s][\color{keyword_color}]{<http://}{>}, 
+  morecomment=[s][\color{string_color}]{"}{"}, 
+  breakindent=20pt
+}
