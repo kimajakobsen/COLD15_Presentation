@@ -2,9 +2,9 @@
 \input{preamble.tex}
 
 \title[Optimizing RDF Data Cubes]{Optimizing RDF Data Cubes for Efficient Processing of Analytical Queries}
-\author[Kim Ahlstr\o{}m Jakobsen]{\large Kim Ahlstr\o{}m Jakobsen \\ kah@cs.aau.dk}
-\institute[COLD 2015]{\small Database Technology,\\ Department of Computer Science,\\ Aalborg University\\[1ex]}
-\date[October 12th, 2015]{}
+\author[Kim Ahlstr\o{}m Jakobsen]{\large \textbf{Kim Ahlstr\o{}m Jakobsen} \\ Alex B. Andersen\\ Katja Hose\\ Torben Bach Pedersen}
+\institute[Aalborg University]{\small Database Technology,\\ Department of Computer Science,\\ Aalborg University\\[1ex]}
+\date[]{}
 
 \begin{document}
 
@@ -24,36 +24,108 @@
 \newcommand{\intro}{Motivation}
 \section{\intro}
 \begin{frame}{\intro}
-Indledende problem? 
-Analytiske beslutninger basseret på intern og ekstern data.
-
-
-\end{frame}
-
-\begin{frame}{Business Intelligence}
-
-\end{frame}
-
-\begin{frame}{External Linked Data}
-
-\end{frame}
-
-\begin{frame}{Goal \& the First Steps}
-The idea is to denormalize the dimensions, 
-
-Algorithm and Query rewriting
-\end{frame}
-
-\begin{frame}{Running Example}
 \begin{figure}
-    \includegraphics[trim=0 200 0 0,clip,width=\textwidth]{images/dataset_instance_example.pdf}
+    \includegraphics<+>[trim=0 680 225 0,clip,width=0.5\textwidth]{images/motivation_top-00.pdf}
+    \includegraphics<+>[trim=0 680 225 0,clip,width=0.5\textwidth]{images/motivation_top-01.pdf}
+    \includegraphics<+->[trim=0 680 225 0,clip,width=0.5\textwidth]{images/motivation_top-1.pdf}
 \end{figure}
+\begin{figure}
+    \invisible<1-3>{\only<1-4>{\includegraphics[trim=0 500 200 0,clip,width=0.5\textwidth]{images/motivation_left-1}}}
+    \includegraphics<5>[trim=0 500 200 0,clip,width=0.5\textwidth]{images/motivation_left-2}
+    \includegraphics<6>[trim=0 500 200 0,clip,width=0.5\textwidth]{images/motivation_left-3}
+\end{figure}
+
 \end{frame}
 
-\begin{frame}{Building a Cube}
+
+\begin{frame}{Goal}
+\begin{block}{Goal}
+Analytical queries on internal data \& external linked data
+\end{block}
+\pause
+\begin{block}{Benefits}
+\begin{itemize}
+    \item Enables exploratory queries
+    \item Increasing amount of linked data
+    \item Integrates with heterogeneous data
+    \item Semantic reasoning
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{The First Steps}
+\begin{block}{}
+ Efficient Processing of Analytical Querying on RDF Data Cubes.
+\end{block}
+\pause
+\begin{itemize}
+    \item Denormalize the cube dimensions
+    \item Reduce the subject-object joins (expensive)
+    \item Increase the subject-subject joins
+\end{itemize}
+\begin{columns}
+\column{0.5\textwidth}
+
+\column{0.5\textwidth}
+\begin{figure}
+    \includegraphics[width=\textwidth]{images/step-by-clip-art-849063.jpg}
+\end{figure}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Workflow}
+
+\begin{figure}
+\centering
+    \includegraphics<+>[trim=0 655 253 0,clip,height=0.7\textheight]{images/Workflow-3}
+    \includegraphics<+>[trim=0 655 253 0,clip,height=0.7\textheight]{images/Workflow-4}
+    \includegraphics<+>[trim=0 655 253 0,clip,height=0.7\textheight]{images/Workflow-5}
+    \includegraphics<+>[trim=0 655 253 0,clip,height=0.7\textheight]{images/Workflow-6}
+    \includegraphics<+>[trim=0 655 253 0,clip,height=0.7\textheight]{images/Workflow-7}
+    \includegraphics<+>[trim=0 655 253 0,clip,height=0.7\textheight]{images/Workflow-8}
+    \includegraphics<+>[trim=0 655 253 0,clip,height=0.7\textheight]{images/Workflow-9}
+    \includegraphics<+->[trim=0 655 253 0,clip,height=0.7\textheight]{images/Workflow-10}
+\end{figure}
+\begin{itemize}
+    \item<+-> Internal optimization 
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{Running Example}
+%\begin{figure}
+%    \includegraphics[trim=0 200 0 0,clip,width=\textwidth]{images/dataset_instance_example.pdf}
+%\end{figure}
+%\end{frame}
+
+\begin{frame}{Building the Cube}
+\begin{block}{Purpose}
+\begin{itemize}
+    \item Organize data with purpose of analysis
+    \item Easies to understand
+\end{itemize}
+\end{block}
+
+\uncover<2>{
+\begin{block}{What is a cube}
+\begin{itemize}
+    \item Facts: The subject of the analysis
+    \item Dimensions: Perspectives of the data
+    \item Levels: Concepts in the dimensions
+\end{itemize}
+\end{block}}
+\end{frame}
+
+\begin{frame}{\patsec}{Snowflake Pattern}
+    \begin{figure}
+        \includegraphics[trim=0 648 255 0,clip,width=1\textwidth]{images/snowflakepattern.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Requirements}
 \begin{columns}
 \column{.5\textwidth}
-\begin{block}{Requirements}
+\begin{block}{}
 \begin{itemize}
     \item Observations
     \item Level members
@@ -67,68 +139,72 @@ Algorithm and Query rewriting
     \end{figure}
 \end{columns}
 
-\begin{block}{Candidate Frameworks}
+\begin{block}{Candidate Ontologies}
 \begin{itemize}
-    \item QB\cite{dataCube}
-    \item QB4OLAP\cite{DBLP:conf/semweb/EtcheverryV12}
+    \item QB%\cite{dataCube}
+    \item QB4OLAP%\cite{DBLP:conf/semweb/EtcheverryV12}
 \end{itemize}
 \end{block}
 \end{frame}
 
 \newcommand{\patsec}{Patterns}
 \section{\patsec}
-\begin{frame}{\patsec}
-    \begin{columns}
-        \column{.5\textwidth}
-        Snowflake Pattern
-        \begin{figure}
-            \includegraphics[trim=0 648 325 0,clip,width=0.5\textheight]{images/snowflakepattern.pdf}
-        \end{figure}
-
-        \column{.5\textwidth}
-        Star Pattern
-        \begin{figure}
-            \includegraphics[trim=0 648 325 0,clip,width=.5\textheight]{images/starpattern.pdf}
-        \end{figure}
-        Fully Denormalized Pattern
-        \begin{figure}
-            \includegraphics[trim=0 648 325 0,clip,width=.5\textheight]{images/denormalizedpattern.pdf}
-        \end{figure}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{\patsec}
-\framesubtitle{\snowpat}
+\begin{frame}{\patsec}{Star Pattern}
     \begin{figure}
-        \includegraphics[trim=0 648 325 0,clip,width=1\textheight]{images/snowflakepattern.pdf}
+        \includegraphics[trim=0 648 255 0,clip,width=1\textwidth]{images/starpattern.pdf}
     \end{figure}
 \end{frame}
 
-\begin{frame}{\patsec}
-\framesubtitle{\starpat}
+\begin{frame}{\patsec}{Denormalized Pattern}
     \begin{figure}
-        \includegraphics[trim=0 648 325 0,clip,width=1\textheight]{images/starpattern.pdf}
+        \includegraphics[trim=0 648 255 0,clip,width=1\textwidth]{images/denormalizedpattern.pdf}
     \end{figure}
 \end{frame}
-
-\begin{frame}{\patsec}
-\framesubtitle{\denormpat}
-    \begin{figure}
-        \includegraphics[trim=0 648 325 0,clip,width=1\textheight]{images/denormalizedpattern.pdf}
-    \end{figure}
-\end{frame}
-
 
 \section{SWOD}
+\begin{frame}{Special Cases:}{Unbalanced Hierarchies}
+\begin{figure}[tb]
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/alg-unbal-abstract-base}
+    \end{center}
+\end{figure}
+\end{frame}
 
-\begin{frame}{Semantic Web OLAP Denormalizations Algorithm}
+
+\begin{frame}{Special Cases:}{Property Collision}
+    \begin{figure}
+        \includegraphics<+>[trim=0 648 255 0,clip,width=1\textwidth]{images/property_collision-0.pdf}
+        \includegraphics<+>[trim=0 648 255 0,clip,width=1\textwidth]{images/property_collision-1.pdf}
+        \includegraphics<+>[trim=0 648 255 0,clip,width=1\textwidth]{images/property_collision-2.pdf}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}{Semantic Web OLAP Denormalization Algorithm}
 \begin{columns}
     \column{0.5\textwidth}
-    Input
+    \begin{block}{Input}
+        \begin{itemize}
+            \item QB4OLAP ontology
+            \item Snowflake pattern RDF data cube
+        \end{itemize}
+    \end{block}
 
-    Output
+    \begin{block}{Output}
+        \begin{itemize}
+            \item Star pattern RDF data cube
+            \item Fully Denormalized pattern RDF data cube
+        \end{itemize}
+    \end{block}
 
-    Features
+    \begin{block}{Features}
+        \begin{itemize}
+            \item Top-down traversal
+            \item Property renaming
+        \end{itemize}
+    \end{block}
+
+    
     \column{0.5\textwidth}
     \begin{figure}
         \includegraphics[width=\textwidth]{images/turingMachine.png}
@@ -137,263 +213,139 @@ Algorithm and Query rewriting
 \end{frame}
 
 
-\begin{frame}{Problems}{Unballanced Heirichies}
-
-\end{frame}
-
-\begin{frame}{Problems}{Multiple Heirichies}
-
-\end{frame}
-
-
-\subsection{Unbalanced Hierarchies} 
-\begin{frame}{\alg}
-\framesubtitle{Unbalanced Hierarchies}
-\begin{itemize}
-    \item Paths from top level to leafs of different lengths
-    \item<3-> E.g. the customer level of the orders dimension
-\end{itemize}
-\begin{figure}[tb]
-    \begin{center}
-        \invisible<1>{\includegraphics[]{images/alg-unbal-abstract-1}}
-    \end{center}
-\end{figure}
-\end{frame}
-
-\begin{frame}{\alg}
-\framesubtitle{Unbalanced Hierarchies}
-\begin{itemize}
-    \item Naive approach from lowest level instances fails
-    \item<2-> Move upwards on ontology and merge downwards on instances
-\end{itemize}
-\begin{figure}[tb]
-    \begin{center}
-        \includegraphics<1>[width=\textwidth]{images/alg-unbal-naive}
-        \includegraphics<2>[width=\textwidth]{images/alg-unbal-base}
-        \includegraphics<3>[width=\textwidth]{images/alg-unbal-merge-1}
-        \includegraphics<4>[width=\textwidth]{images/alg-unbal-merge-2}
-        \includegraphics<5>[width=\textwidth]{images/alg-unbal-merge-3}
-        \includegraphics<6>[width=\textwidth]{images/alg-unbal-merge-4}
-    \end{center}
-\end{figure}
-\end{frame}
-
-\begin{frame}{\alg}
-\framesubtitle{Unbalanced Hierarchies}
-\begin{itemize}
-    \item Dimension instances part of a number of levels
-    \item Query level instances, which are unbalanced
-\end{itemize}
-\begin{figure}[tb]
-    \begin{center}
-        \includegraphics<1>[]{images/alg-unbal-onto-base}
-        \includegraphics<2>[]{images/alg-unbal-onto-1}
-    \end{center}
-\end{figure}
-\end{frame}
-
-\subsection{Multiple Hierarchies}
-\begin{frame}{\alg}
-\framesubtitle{Multiple Hierarchies}
-\begin{itemize}
-    \item More than one path from bottom to top level
-    \item Merge level instances of all hierarchies
-\end{itemize}
-\begin{figure}[tb]
-    \begin{center}
-        \includegraphics<1>[]{images/tpch-ps-hier}
-    \end{center}
-\end{figure}
-\end{frame}
-
-\begin{frame}{\alg}
-\framesubtitle{Multiple Hierarchies}
-\begin{figure}[tb]
-    \begin{center}
-        \includegraphics<1>[]{images/alg-multihier-base}
-        \includegraphics<2>[]{images/alg-multihier-merge-1}
-        \includegraphics<3>[]{images/alg-multihier-merge-2}
-        \includegraphics<4>[]{images/alg-multihier-merge-3}
-        \includegraphics<5>[]{images/alg-multihier-merge-4}
-        \includegraphics<6>[]{images/alg-multihier-merge-5}
-        \includegraphics<7>[]{images/alg-multihier-merge-6}
-    \end{center}
-\end{figure}
-\end{frame}
-
-
-\newcommand{\eval}{Evaluation}
-\section{\eval}
-\begin{frame}{\eval}
-\framesubtitle{Load Time}
+\begin{frame}{Unbalanced Hierarchies Example}
 \begin{figure}
-\footnotesize
-\begin{tikzpicture}
-\begin{axis}[
-        xmode=log,
-        ymode=log,
-        xlabel={Scaling Factor},
-        legend style={at={(1.025,0.975)},anchor=north west},
-        ylabel={Load Time (s)}
-    ]
-\draw(axis cs:1,573642) node [fill=blue!20,draw=blue,circle,scale=1]{};
-\addplot table[x index=0,y index=3,col sep=comma] {loadtime-accum.csv};
-\addlegendentry{\denormpat}
-\addplot table[x index=0,y index=2,col sep=comma] {loadtime-accum.csv};
-\addlegendentry{\starpat}
-\addplot table[x index=0,y index=1,col sep=comma] {loadtime-accum.csv};
-\addlegendentry{\snowpat}% y index+1 since humans count from 1
-\end{axis}
-\end{tikzpicture}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-0.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-1.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-2.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-3.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-4.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-5.pdf}
 \end{figure}
 \end{frame}
 
-\begin{frame}{\eval}
-\framesubtitle{Number of Triples}
+\begin{frame}[fragile]{Query rewriting}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{lstlisting}[style=rdf, captionpos=b,label=lst:snow, basicstyle=\scriptsize]
+SELECT ?name sum(?price)
+WHERE {
+ ?lineitem :extendedprice ?price;
+           :has_order ?order .
+ ?order skos:broader ?customer .
+ ?customer skos:broader ?nation .
+ ?nation :name ?name .
+}
+GROUP BY ?name
+\end{lstlisting}
+\column{0.5\textwidth}
+\end{columns}
+
+\begin{columns}
+\column{0.5\textwidth}
+\centering
 \begin{figure}
-\footnotesize
-\begin{tikzpicture}
-\begin{axis}[
-        xmode=log,
-        ymode=log,
-        xlabel={Scaling Factor},
-        legend style={at={(1.025,0.975)},anchor=north west},
-        ylabel={Number of Triples}
-    ]
-\draw(axis cs:1,414796747) node [fill=blue!20,draw=blue,circle,scale=1]{};
-\addplot table[x index=0,y index=3,col sep=comma] {triples-lineitem.csv};
-\addlegendentry{\denormpat}
-\addplot table[x index=0,y index=2,col sep=comma] {triples-lineitem.csv};
-\addlegendentry{\starpat}
-\addplot table[x index=0,y index=1,col sep=comma] {triples-lineitem.csv};
-\addlegendentry{\snowpat}% y index+1 since humans count from 1
-\end{axis}
-\end{tikzpicture}
+    \includegraphics[trim=0 648 280 0,clip,width=1\textwidth]{images/snowflakepattern-0.pdf}
 \end{figure}
+\column{0.5\textwidth}
+\end{columns}
 \end{frame}
-\begin{frame}{\eval}
-\framesubtitle{\QET}
+
+
+\begin{frame}[fragile]{Query rewriting}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{lstlisting}[style=rdf, captionpos=b,label=lst:snow, basicstyle=\scriptsize]
+SELECT ?name sum(?price)
+WHERE {
+ ?lineitem :extendedprice ?price;
+           :has_order ?order .
+ ?order skos:broader ?customer .
+ ?customer skos:broader ?nation .
+ ?nation :name ?name .
+}
+GROUP BY ?name
+\end{lstlisting}
+\column{0.5\textwidth}
+\begin{lstlisting}[style=rdf, captionpos=b, label=lst:star, basicstyle=\scriptsize]
+SELECT ?name sum(?price)
+WHERE {
+ ?lineitem :extendedprice ?price;
+           :has_order ?order .
+ ?order :nation_name ?name .
+}
+GROUP BY ?name
+\end{lstlisting}
+\end{columns}
+
+\begin{columns}
+\column{0.5\textwidth}
+\centering
 \begin{figure}
-\footnotesize
-\begin{tikzpicture}
-\begin{axis}[
-        xmode=log,
-        ymode=log,
-        xlabel={Scaling Factor},
-        legend style={at={(1.025,0.975)},anchor=north west},
-        ylabel={Geo. Mean (s)}
-    ]
-\addplot table[x index=0,y index=3,col sep=comma] {results-avg.csv};
-\addlegendentry{\denormpat}
-\addplot table[x index=0,y index=2,col sep=comma] {results-avg.csv};
-\addlegendentry{\starpat}
-\addplot table[x index=0,y index=1,col sep=comma] {results-avg.csv};
-\addlegendentry{\snowpat}% y index+1 since humans count from 1
-\end{axis}
-\end{tikzpicture}
+    \includegraphics[trim=0 648 280 0,clip,width=1\textwidth]{images/snowflakepattern-0.pdf}
 \end{figure}
+\column{0.5\textwidth}
+\centering
+\begin{figure}
+    \includegraphics[trim=0 648 280 0,clip,width=1\textwidth]{images/starpattern.pdf}
+\end{figure}
+\end{columns}
 \end{frame}
 
-%\begin{frame}{\eval}
-%\framesubtitle{Timeouts}
-%\begin{figure}
-%\begin{tikzpicture}
-%\begin{axis}[
-%        xmode=log,
-%        xlabel={Scaling Factor},
-%        legend style={at={(0.025,0.975)},anchor=north west},
-%        ylabel={Number of Timeouts}
-%    ]
-%\addplot table[x index=0,y index=3,col sep=comma] {timeouts.csv};
-%\addlegendentry{\denormpat}
-%\addplot table[x index=0,y index=2,col sep=comma] {timeouts.csv};
-%\addlegendentry{\starpat}
-%\addplot table[x index=0,y index=1,col sep=comma] {timeouts.csv};
-%\addlegendentry{\snowpat}% y index+1 since humans count from 1
-%\end{axis}
-%\end{tikzpicture}
-%\end{figure}
-
-
-\begin{frame}{\eval}
-\framesubtitle{Discussion}
+\section{Evaluation}
+\begin{frame}{Results}
+\begin{table}
+    \begin{tabular}{l|r|r}
+    \hline
+    \multicolumn{3}{c}{Virtuoso} \\ \hline
+    ~        & Star & Denormalized \\ \hline
+    Increase in Triples  & 16 \%     & 173 \%       \\
+    Avg. Decease in Query Time     & 600 \%    & 700 \%       \\
+    Geo. M. Decease in Query Time & 110 \%    & 140 \%       \\
+    \end{tabular}
+\end{table}
 \begin{itemize}
-    \item Load times increase super-linearly with scaling factor
-    \item Hard disk bottle neck when inserting triples
-    \item \starpat 24--58\% slower than \snowpat
-    \item \denormpat 41--1163\% slower than \snowpat
-    \item Number of triples increase linearly
-    \begin{itemize}
-        \item Only small overhead for ontology
-    \end{itemize}
+    \item Cost of triple storage
+    \item Static and frequently changing data
 \end{itemize}
 \end{frame}
 
-\definecolor{LRed}{rgb}{1,.8,.8}
-\definecolor{MRed}{rgb}{1,.6,.6}
-\definecolor{HRed}{rgb}{1,.2,.2}
 
-\newcommand{\conc}{Summary and Future Work}
-\section{\conc}
+
+
+\newcommand{\conc}{Future Work}
 \begin{frame}{\conc}
-\framesubtitle{Summary}
+\begin{columns}
+\column{0.5\textwidth}
 \begin{itemize}
-    \item<+-> Logical patterns based on relational techniques
-    \item<+-> SWOD algorithm converts between patterns
-    \item<+-> TPC-H data converted to RDF, annotated with QB4OLAP
-    \item<+-> Evaluation of patterns
-    \begin{itemize}
-        \item<1-3,+-> \denormpat not feasible
-        \item<1-3,+-> \snowpat small, but slow \qet
-        \item<1-3,+-> \starpat larger, but fast \qet\ -- good for many levels
-    \end{itemize}
+    \item More cube optimizations
+    \item Consider data provenance and quality
 \end{itemize}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[width=\textwidth]{images/The-present-of-work.jpg}
+\end{figure}
+\end{columns}
+
+
 \end{frame}
 
-\begin{frame}{\conc}
-\framesubtitle{Future Work}
-\begin{itemize}
-    \item<+-> Query rewrites from \snowpat to other patterns
-    \begin{itemize}
-        \item Similar technique as for data conversion
-        \item Consider variables
-    \end{itemize}
-    \item<+-> New version of QB4OLAP
-    \begin{itemize}
-        \item Hierarchies explicitly defined
-    \end{itemize}
-    \item<+-> Make SWOD module based
-    \begin{itemize}
-        \item Convert between all patterns
-        \item Allow new patterns to be defined
-    \end{itemize}
-\end{itemize}
+%\setbeamertemplate{headline}{}
+\begin{frame}[plain]{}
+\centering
+\Huge{Thank you}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Appendix
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\appendix
-%\newcounter{finalframe}
-%\setcounter{finalframe}{\value{framenumber}}
-%
-%
-%
-%\begin{frame}[c]{Extra}
-%%\framesubtitle{}
-%test
-%\end{frame}
-%
-%\setcounter{framenumber}{\value{finalframe}}
 
-\begin{frame}[allowframebreaks]
+
+\begin{frame}[allowframebreaks,noframenumbering]
         \frametitle{References}
         \bibliographystyle{amsalpha}
         \bibliography{references.bib}
 \end{frame}
 
 
-\begin{frame}{\alg}
+\begin{frame}[noframenumbering]{SWOD Abstract}
 \framesubtitle{Example}
 \begin{figure}[]
   \centering
@@ -402,7 +354,6 @@ Algorithm and Query rewriting
   \includegraphics<+>[height=0.8\textheight]{images/1-SWOD.pdf}
   \includegraphics<+>[height=0.8\textheight]{images/2-SWOD.pdf}
   \includegraphics<+>[height=0.8\textheight]{images/3-SWOD.pdf}
-  %\includegraphics<+>[height=0.8\textheight]{images/4-SWOD.pdf}
   \includegraphics<+>[height=0.8\textheight]{images/5-SWOD.pdf}
   \includegraphics<+>[height=0.8\textheight]{images/6-SWOD.pdf}
   \includegraphics<+>[height=0.8\textheight]{images/7-SWOD.pdf}
@@ -414,13 +365,19 @@ Algorithm and Query rewriting
 \end{figure}
 \end{frame}
 
-\begin{frame}{\alg}
-\framesubtitle{Figure Licenses}
+\begin{frame}[noframenumbering]{Figure Credits}
 \begin{itemize}
     \item Workman -- Licence: CC BY 3.0 \\ Credit: www.clipartbest.com
     \item Cube -- Licence: CC BY 3.0 \\ Credit: www.clipartbest.com
     \item Turing machine \\ http://www.felienne.com/
+    \item Steps \\ http://www.cliparthut.com/
+    \item Future-work \\ http://www.horsesforsources.com/
 \end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]{Join types}
+
+
 \end{frame}
 
 \end{document}
