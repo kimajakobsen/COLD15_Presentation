@@ -38,7 +38,7 @@
 \end{frame}
 
 
-\begin{frame}{Goal}
+\begin{frame}{Future Goal}
 \begin{block}{Goal}
 Analytical queries on internal data \& external linked data
 \end{block}
@@ -104,7 +104,7 @@ Analytical queries on internal data \& external linked data
 \begin{block}{Purpose}
 \begin{itemize}
     \item Organize data with purpose of analysis
-    \item Easies to understand
+    \item Easier to understand
 \end{itemize}
 \end{block}
 \column{0.5\textwidth}
@@ -124,6 +124,18 @@ Analytical queries on internal data \& external linked data
 \end{block}}
 \end{frame}
 
+\begin{frame}{Analytical Queries}
+\begin{block}{Example Query 1}
+    What is the revenue per country?
+\end{block}
+\pause
+\begin{block}{Example Query 2}
+    What are the top k products bought by customers from Denmark?
+\end{block}
+\end{frame}
+
+\newcommand{\patsec}{Patterns}
+\section{\patsec}
 \begin{frame}{\patsec}{Snowflake Pattern}
     \begin{figure}
         \includegraphics[trim=0 648 255 0,clip,width=1\textwidth]{images/snowflakepattern.pdf}
@@ -153,15 +165,14 @@ Analytical queries on internal data \& external linked data
 %\end{block}
 %\end{frame}
 
-\newcommand{\patsec}{Patterns}
-\section{\patsec}
+
 \begin{frame}{\patsec}{Star Pattern}
     \begin{figure}
         \includegraphics[trim=0 648 255 0,clip,width=1\textwidth]{images/starpattern.pdf}
     \end{figure}
 \end{frame}
 
-\begin{frame}{\patsec}{Denormalized Pattern}
+\begin{frame}{\patsec}{Fully Denormalized Pattern}
     \begin{figure}
         \includegraphics[trim=0 648 255 0,clip,width=1\textwidth]{images/denormalizedpattern.pdf}
     \end{figure}
