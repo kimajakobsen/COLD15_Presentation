@@ -99,12 +99,20 @@ Analytical queries on internal data \& external linked data
 %\end{frame}
 
 \begin{frame}{Building the Cube}
+\begin{columns}
+\column{0.5\textwidth}
 \begin{block}{Purpose}
 \begin{itemize}
     \item Organize data with purpose of analysis
     \item Easies to understand
 \end{itemize}
 \end{block}
+\column{0.5\textwidth}
+\begin{figure}
+        \includegraphics[width=0.8\textwidth]{images/cubeBuilder.png}
+    \end{figure}
+\end{columns}
+
 
 \uncover<2>{
 \begin{block}{What is a cube}
@@ -122,30 +130,28 @@ Analytical queries on internal data \& external linked data
     \end{figure}
 \end{frame}
 
-\begin{frame}{Requirements}
-\begin{columns}
-\column{.5\textwidth}
-\begin{block}{}
-\begin{itemize}
-    \item Observations
-    \item Level members
-    \item Relations between levels
-    \item Level attributes
-\end{itemize}
-\end{block}
-\column{.5\textwidth}
-    \begin{figure}
-        \includegraphics[width=0.8\textwidth]{images/cubeBuilder.png}
-    \end{figure}
-\end{columns}
-
-\begin{block}{Candidate Ontologies}
-\begin{itemize}
-    \item QB%\cite{dataCube}
-    \item QB4OLAP%\cite{DBLP:conf/semweb/EtcheverryV12}
-\end{itemize}
-\end{block}
-\end{frame}
+%\begin{frame}{Requirements}
+%\begin{columns}
+%\column{.5\textwidth}
+%\begin{block}{}
+%\begin{itemize}
+%    \item Observations
+%    \item Level members
+%    \item Relations between levels
+%    \item Level attributes
+%\end{itemize}
+%\end{block}
+%\column{.5\textwidth}
+%    
+%\end{columns}
+%
+%\begin{block}{Candidate Ontologies}
+%\begin{itemize}
+%    \item QB%\cite{dataCube}
+%    \item QB4OLAP%\cite{DBLP:conf/semweb/EtcheverryV12}
+%\end{itemize}
+%\end{block}
+%\end{frame}
 
 \newcommand{\patsec}{Patterns}
 \section{\patsec}
@@ -215,12 +221,12 @@ Analytical queries on internal data \& external linked data
 
 \begin{frame}{Unbalanced Hierarchies Example}
 \begin{figure}
-    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-0.pdf}
-    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-1.pdf}
-    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-2.pdf}
-    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-3.pdf}
-    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-4.pdf}
-    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-5.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-a.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-b.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-c.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-d.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-e.pdf}
+    \includegraphics<+>[trim=0 648 145 0,clip,width=1\textwidth]{images/unbalanced_hierarchies-f.pdf}
 \end{figure}
 \end{frame}
 
@@ -338,11 +344,11 @@ GROUP BY ?name
 
 
 
-\begin{frame}[allowframebreaks,noframenumbering]
-        \frametitle{References}
-        \bibliographystyle{amsalpha}
-        \bibliography{references.bib}
-\end{frame}
+%\begin{frame}[allowframebreaks,noframenumbering]
+%        \frametitle{References}
+%        \bibliographystyle{amsalpha}
+%        \bibliography{references.bib}
+%\end{frame}
 
 
 \begin{frame}[noframenumbering]{SWOD Abstract}
@@ -375,9 +381,6 @@ GROUP BY ?name
 \end{itemize}
 \end{frame}
 
-\begin{frame}[noframenumbering]{Join types}
 
-
-\end{frame}
 
 \end{document}
